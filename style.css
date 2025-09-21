@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Quicksand', sans-serif;
+    color: #fff;
+    overflow: hidden;
+}
+
+.card {
+    position: relative;
+    width: 350px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem; /* Tamaño de fuente ajustado */
+    color: #FFD700;
+    margin: 0 0 10px 0;
+}
+
+h2 {
+    font-size: 1.5rem;
+    color: #FFC107;
+    margin: 0 0 30px 0;
+}
+
+button {
+    background: #FFD700;
+    color: #111;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+    z-index: 2;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+.flower-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.flower-frame div {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="6" fill="%236D4C41"/><g fill="%23FFD700"><ellipse cx="32" cy="10" rx="6" ry="12"/><ellipse cx="32" cy="54" rx="6" ry="12"/><ellipse cx="10" cy="32" rx="12" ry="6"/><ellipse cx="54" cy="32" rx="12" ry="6"/><ellipse cx="16" cy="16" rx="6" ry="12" transform="rotate(-45 16 16)"/><ellipse cx="48" cy="16" rx="6" ry="12" transform="rotate(45 48 16)"/><ellipse cx="16" cy="48" rx="6" ry="12" transform="rotate(45 16 48)"/><ellipse cx="48" cy="48" rx="6" ry="12" transform="rotate(-45 48 48)"/></g></svg>') no-repeat;
+    background-size: contain;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.7));
+}
+
+.border-top-left { top: 10px; left: 10px; transform: rotate(-10deg); }
+.border-top-right { top: 10px; right: 10px; transform: scaleX(-1) rotate(-10deg); }
+.border-bottom-left { bottom: 10px; left: 10px; transform: rotate(10deg); }
+.border-bottom-right { bottom: 10px; right: 10px; transform: scaleX(-1) rotate(10deg); }
+
+
+/* Estilos para las flores que caen */
+.flower {
+    position: absolute;
+    top: -100px;
+    pointer-events: none;
+    will-change: transform;
+    animation: fall 10s linear infinite;
+}
+
+.flower svg {
+    filter: drop-shadow(0 0 10px rgba(255,255,200,0.9));
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(120vh) rotate(720deg);
+        opacity: 0;
+    }
+}

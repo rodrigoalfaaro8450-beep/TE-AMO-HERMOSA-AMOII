@@ -1,0 +1,51 @@
+const btn = document.getElementById('giftBtn');
+let raining = false;
+
+btn.addEventListener('click', () => {
+    if (!raining) {
+        raining = true;
+        // Iniciar la lluvia de flores
+        const intervalId = setInterval(createFallingFlower, 250);
+
+        // Opcional: Detener la lluvia después de un tiempo
+        setTimeout(() => {
+            clearInterval(intervalId);
+            raining = false;
+        }, 15000); // Se detiene después de 15 segundos
+    }
+});
+
+function createFallingFlower() {
+    const flower = document.createElement('div');
+    flower.classList.add('flower');
+
+    const colors = ["#FFD700","#FFC107","#FFA000","#FFEB3B","#FFD54F"];
+    const petalColor = colors[Math.floor(Math.random() * colors.length)];
+
+    const size = Math.random() * 40 + 30;
+    flower.style.width = size + "px";
+    flower.style.height = size + "px";
+    flower.style.left = Math.random() * 100 + "vw";
+
+    flower.innerHTML = `
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="6" fill="#6D4C41"/>
+            <g fill="${petalColor}">
+                <ellipse cx="32" cy="10" rx="6" ry="12"/>
+                <ellipse cx="32" cy="54" rx="6" ry="12"/>
+                <ellipse cx="10" cy="32" rx="12" ry="6"/>
+                <ellipse cx="54" cy="32" rx="12" ry="6"/>
+                <ellipse cx="16" cy="16" rx="6" ry="12" transform="rotate(-45 16 16)"/>
+                <ellipse cx="48" cy="16" rx="6" ry="12" transform="rotate(45 48 16)"/>
+                <ellipse cx="16" cy="48" rx="6" ry="12" transform="rotate(45 16 48)"/>
+                <ellipse cx="48" cy="48" rx="6" ry="12" transform="rotate(-45 48 48)"/>
+            </g>
+        </svg>
+    `;
+
+    document.body.appendChild(flower);
+
+    setTimeout(() => {
+        flower.remove();
+    }, 12000);
+}
